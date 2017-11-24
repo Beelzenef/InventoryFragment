@@ -1,4 +1,4 @@
-package com.example.inventoryfragment.ui.login;
+package com.example.inventoryfragment.ui.login.interactor;
 
 import android.text.TextUtils;
 

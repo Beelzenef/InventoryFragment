@@ -50,7 +50,7 @@ public class ExampleUnitTest {
     public void user_isCorrect() throws Exception
     {
         // Cuando se llame al método userExists, devuelva un valor predeterminado
-        when(userRepository.userExists(users.get(0))).thenReturn(true);
+        //when(userRepository.userExists(users.get(0))).thenReturn(true);
 
         assertEquals("usuario", userRepository.getUsers().get(0).getUser());
     }
@@ -64,7 +64,7 @@ public class ExampleUnitTest {
     // 4. Passwd es correcta (Repository)
     @Test
     public void password_isCorrect() throws Exception {
-        when(userRepository.userExists(users.get(0))).thenReturn(true);
+        //when(userRepository.userExists(users.get(0))).thenReturn(true);
 
         assertEquals("user1", userRepository.getUsers().get(0).getPassw());
     }
@@ -90,7 +90,7 @@ public class ExampleUnitTest {
     public void email_notExists() throws Exception
     {
         // Cuando se llame al método userExists, devuelva un valor predeterminado
-        when(userRepository.userExists(users.get(0))).thenReturn(false);
+        //when(userRepository.userExists(users.get(0))).thenReturn(false);
 
         assertEquals(users.get(0).getEmail(), userRepository.getUsers().get(0).getEmail());
     }

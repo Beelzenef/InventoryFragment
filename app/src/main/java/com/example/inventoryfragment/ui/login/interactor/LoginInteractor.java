@@ -1,4 +1,4 @@
-package com.example.inventoryfragment.ui.login;
+package com.example.inventoryfragment.ui.login.interactor;
 
 /**
  * Created by usuario on 10/11/17.

@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.adapter.DependencyAdapter;
+import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 
 /**
@@ -95,7 +96,7 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
     }
 
     @Override
-    public void setPresenter(ListDependencyContract.Presenter presenter) {
-        this.presenter = presenter;
+    public void setPresenter(BasePresenter presenter) {
+        this.presenter = (ListDependencyContract.Presenter) presenter;
     }
 }

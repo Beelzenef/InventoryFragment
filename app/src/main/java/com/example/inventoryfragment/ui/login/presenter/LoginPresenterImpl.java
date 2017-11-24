@@ -1,4 +1,8 @@
-package com.example.inventoryfragment.ui.login;
+package com.example.inventoryfragment.ui.login.presenter;
+
+import com.example.inventoryfragment.ui.login.LoginView;
+import com.example.inventoryfragment.ui.login.interactor.LoginInteractor;
+import com.example.inventoryfragment.ui.login.interactor.LoginInteractorImpl;
 
 /**
  * Created by usuario on 10/11/17.

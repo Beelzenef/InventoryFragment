@@ -9,6 +9,8 @@ import android.widget.EditText;
 import com.example.inventoryfragment.ui.DashboardActivity;
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.ui.base.BaseActivity;
+import com.example.inventoryfragment.ui.login.presenter.LoginPresenter;
+import com.example.inventoryfragment.ui.login.presenter.LoginPresenterImpl;
 
 /**
  *  Activity de Login con diversas redes sociales. Dirige al Dashboard
