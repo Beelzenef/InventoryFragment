@@ -161,6 +161,9 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
 
         DependencyRepository.getInstance().addDependency(newDep);
         */
+        callback.addingNewDependency(new Dependency(0, tID_DependencyName.getText().toString(),
+                tID_DependencyShortname.getText().toString(),
+                tID_DependencyDescription.getText().toString()));
         callback.returnToDependencyList();
 
     }
@@ -182,6 +185,7 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
 
     interface AddNewDependencyClickListener
     {
+        void addingNewDependency(Dependency d);
         void returnToDependencyList();
     }
 }

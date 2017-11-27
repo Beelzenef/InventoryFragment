@@ -22,4 +22,9 @@ public class ListDependencyInteractorImpl implements ListDependencyInteractor {
     public void loadDependencies() {
         listener.OnSuccess(DependencyRepository.getInstance().getDependencies());
     }
+
+    @Override
+    public void addNewDependency(String name, String shortname, String desc) {
+        DependencyRepository.getInstance().addDependency(new Dependency(0, name, shortname, desc));
+    }
 }

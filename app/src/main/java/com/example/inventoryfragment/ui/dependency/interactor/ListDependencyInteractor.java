@@ -11,9 +11,10 @@ import java.util.List;
 
 public interface ListDependencyInteractor {
 
-    public interface OnLoadDependencyListener {
+    interface OnLoadDependencyListener {
         void OnSuccess(List<Dependency> list);
     }
 
     void loadDependencies();
+    void addNewDependency(String name, String shortname, String desc);
 }

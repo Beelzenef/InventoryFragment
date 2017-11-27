@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
 import com.example.inventoryfragment.R;
+import com.example.inventoryfragment.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BaseActivity;
 import com.example.inventoryfragment.ui.dependency.presenter.AddEditDependencyPresenter;
 import com.example.inventoryfragment.ui.dependency.presenter.DetailDependencyPresenter;
@@ -95,6 +96,11 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
         detailDependencyPresenter = new DetailDependencyPresenter(detailDependency);
         // 3. Si necesitamos, se asigna el presentador a su fragment
         detailDependency.setPresenter(detailDependencyPresenter);
+    }
+
+    @Override
+    public void addingNewDependency(Dependency d) {
+        listPresenter.addNewDependency(d.getName(), d.getShortname(), d.getDescription());
     }
 
     @Override

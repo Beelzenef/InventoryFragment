@@ -31,4 +31,9 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     public void loadDependencies() {
         listDependencyInteractor.loadDependencies();
     }
+
+    @Override
+    public void addNewDependency(String name, String shortname, String desc) {
+        listDependencyInteractor.addNewDependency(name, shortname, desc);
+    }
 }
