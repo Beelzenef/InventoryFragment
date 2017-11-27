@@ -13,8 +13,11 @@ import android.widget.ListView;
 
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.adapter.DependencyAdapter;
+import com.example.inventoryfragment.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
+
+import java.util.List;
 
 /**
  * Fragment, lista de dependencias
@@ -25,6 +28,26 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
     public static final String TAG = "listDependency";
     private ListDependencyListener callback;
     private ListDependencyContract.Presenter presenter;
+
+    DependencyAdapter adapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.adapter = new DependencyAdapter(getActivity());
+        setRetainInstance(true);
+    }
+
+    public ListDependency_Fragment()
+    {
+
+    }
+
+    @Override
+    public void showDependencies(List<Dependency> list) {
+        adapter.clear();
+        adapter.addAll(list);
+    }
 
     interface ListDependencyListener {
 
@@ -64,6 +87,9 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
             }
         });
 
+        // Cargar toda dependencia:
+        presenter.loadDependencies();
+
         return rootView;
     }
 
@@ -82,7 +108,8 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setListAdapter(new DependencyAdapter((getActivity())));
+        //setListAdapter(new DependencyAdapter((getActivity())));
+        setListAdapter(adapter);
 
         // Cuando la lista está creada, mostrada, es entonces cuando lo obtenemos y le
         // añadimos listener para abrir DetailDependency
@@ -94,6 +121,8 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
             }
         });
     }
+
+
 
     @Override
     public void setPresenter(BasePresenter presenter) {

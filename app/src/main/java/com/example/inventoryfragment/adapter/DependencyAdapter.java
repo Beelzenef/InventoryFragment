@@ -31,7 +31,9 @@ public class DependencyAdapter extends ArrayAdapter<Dependency> {
 
         // Al tener más de un criterio, se crea una copia del Arraylist de DependencyRepositoriy
         // para tener una copia local en Adapter, modificable sin modificar los datos
-        super(context, R.layout.item_dependency, new ArrayList<>(DependencyRepository.getInstance().getDependencies()));
+        //super(context, R.layout.item_dependency, new ArrayList<>(DependencyRepository.getInstance().getDependencies()));
+
+        super(context, R.layout.item_dependency, new ArrayList<Dependency>());
 
         sort(new Dependency.DependencyOrderBySortName());
     }
