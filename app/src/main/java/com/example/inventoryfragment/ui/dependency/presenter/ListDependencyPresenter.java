@@ -11,7 +11,7 @@ import java.util.List;
  * Created by usuario on 23/11/17.
  */
 
-public class ListDependencyPresenter implements ListDependencyContract.Presenter, ListDependencyInteractor.OnLoadFinishedListener {
+public class ListDependencyPresenter implements ListDependencyContract.Presenter, ListDependencyInteractor.OnLoadDependencyListener {
 
     private ListDependencyContract.View view;
     private ListDependencyInteractorImpl listDependencyInteractor;
@@ -21,13 +21,14 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
         this.listDependencyInteractor = new ListDependencyInteractorImpl(this);
     }
 
+
     @Override
-    public void loadDependencies() {
-        listDependencyInteractor.loadDependencies();
+    public void OnSuccess(List<Dependency> list) {
+        view.showDependencies(list);
     }
 
     @Override
-    public void onSucess() {
-
+    public void loadDependencies() {
+        listDependencyInteractor.loadDependencies();
     }
 }

@@ -80,7 +80,7 @@ public class ExampleUnitTest {
     public void user_notExists() throws Exception
     {
         // Cuando se llame al método userExists, devuelva un valor predeterminado
-        when(userRepository.userExists(users.get(0))).thenReturn(false);
+        //when(userRepository.userExists(users.get(0))).thenReturn(false);
 
         assertEquals(users.get(0).getUser(), userRepository.getUsers().get(0).getUser());
     }

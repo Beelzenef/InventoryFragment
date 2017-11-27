@@ -11,15 +11,15 @@ import java.util.List;
 
 public class ListDependencyInteractorImpl implements ListDependencyInteractor {
 
-    private ListDependencyInteractor.OnLoadFinishedListener listener;
+    ListDependencyInteractor.OnLoadDependencyListener listener;
 
-    public ListDependencyInteractorImpl (ListDependencyInteractor.OnLoadFinishedListener listener)
+    public ListDependencyInteractorImpl(ListDependencyInteractor.OnLoadDependencyListener listener)
     {
         this.listener = listener;
     }
 
     @Override
     public void loadDependencies() {
-
+        listener.OnSuccess(DependencyRepository.getInstance().getDependencies());
     }
 }
