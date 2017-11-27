@@ -1,5 +1,7 @@
 package com.example.inventoryfragment.ui.dependency;
 
+import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -15,7 +17,7 @@ import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPrese
  * Clase para gestionar las adapter en una lista
  * @author Elena G (Beelzenef)
  */
-public class DependencyActivity extends BaseActivity implements ListDependency_Fragment.ListDependencyListener {
+public class DependencyActivity extends BaseActivity implements ListDependency_Fragment.ListDependencyListener, AddEditDependency_Fragment.AddNewDependencyClickListener {
 
     private ListDependency_Fragment listDependency;
     private ListDependencyPresenter listPresenter;
@@ -55,7 +57,6 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
     public void addNewDependency() {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-
         // 1. Creando la vista
         addeditDependency = (AddEditDependency_Fragment) fragmentManager.findFragmentByTag(AddEditDependency_Fragment.TAG);
 
@@ -72,6 +73,7 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
         // 3. Si necesitamos, se asigna el presentador a su fragment
         addeditDependency.setPresenter(addeditPresenter);
     }
+
 
     @Override
     public void editDependency(int item) {
@@ -93,5 +95,11 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
         detailDependencyPresenter = new DetailDependencyPresenter(detailDependency);
         // 3. Si necesitamos, se asigna el presentador a su fragment
         detailDependency.setPresenter(detailDependencyPresenter);
+    }
+
+    @Override
+    public void returnToDependencyList() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStack();
     }
 }

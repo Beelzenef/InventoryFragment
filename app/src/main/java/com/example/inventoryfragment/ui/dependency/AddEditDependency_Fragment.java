@@ -1,5 +1,6 @@
 package com.example.inventoryfragment.ui.dependency;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.inventoryfragment.R;
+import com.example.inventoryfragment.db.model.Dependency;
+import com.example.inventoryfragment.db.repo.DependencyRepository;
 import com.example.inventoryfragment.ui.base.BaseFragment;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;
@@ -31,6 +34,10 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
     TextInputEditText tID_DependencyName;
     TextInputEditText tID_DependencyShortname;
     TextInputEditText tID_DependencyDescription;
+
+    // Instancia de interfaz que interactuará con la Activity
+    // Llamará al método que nos devuelve a la lista de dependencias
+    AddNewDependencyClickListener callback;
 
     public static AddEditDependency_Fragment newInstance(Bundle args) {
 
@@ -68,7 +75,40 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
         });
 
         tID_DependencyShortname = (TextInputEditText) rootView.findViewById(R.id.edtShortname);
+        tID_DependencyShortname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tID_DependencyShortname.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         tID_DependencyName = (TextInputEditText) rootView.findViewById(R.id.edtName);
+        tID_DependencyName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tID_DependencyName.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         fab_addDependency = (FloatingActionButton) rootView.findViewById(R.id.fab_dependency);
         fab_addDependency.setOnClickListener(new View.OnClickListener() {
@@ -114,5 +154,34 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
     @Override
     public void addingCorrectDependency() {
 
+        /* TODO Delegar a Presenter -> Interactor
+        Dependency newDep = new Dependency(0, tID_DependencyName.getText().toString(),
+                tID_DependencyShortname.getText().toString(),
+                tID_DependencyDescription.getText().toString());
+
+        DependencyRepository.getInstance().addDependency(newDep);
+        */
+        callback.returnToDependencyList();
+
+    }
+
+    /**
+     *
+     * Si no está implementada la interfaz, saltará excepción
+     */
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            callback = (AddNewDependencyClickListener) activity;
+        } catch (ClassCastException e)
+        {
+            throw new ClassCastException(getActivity().getLocalClassName() + "must be implemented");
+        }
+    }
+
+    interface AddNewDependencyClickListener
+    {
+        void returnToDependencyList();
     }
 }
