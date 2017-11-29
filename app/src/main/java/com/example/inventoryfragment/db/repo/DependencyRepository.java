@@ -49,7 +49,7 @@ public class DependencyRepository {
         addDependency(new Dependency(9, "1º CF Grado superior", "1CFGS", "Ciclos superiores, primer año, la locura"));
         addDependency(new Dependency(10, "2º CF Grado superior", "2CFGS", "Ciclos superiores, segundo año, la muerte"));
         addDependency(new Dependency(11, "1º CF Grado superior", "1CFGS", "Ciclos superiores, primer año, la locura"));
-        addDependency(new Dependency(12, "2º CF Grado superior", "2CFGS", "Ciclos superiores, segundo año, la muerte"));
+        addDependency(new Dependency(12, "1ESO", "1ESO", "Primero de ESO"));
     }
 
     /**

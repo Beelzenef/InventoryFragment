@@ -55,15 +55,14 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
     }
 
     @Override
-    public void addNewDependency() {
+    public void addNewDependency(Bundle b) {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         // 1. Creando la vista
         addeditDependency = (AddEditDependency_Fragment) fragmentManager.findFragmentByTag(AddEditDependency_Fragment.TAG);
 
-        if (addeditDependency == null)
-        {
-            addeditDependency = AddEditDependency_Fragment.newInstance(null);
+        if (addeditDependency == null) {
+            addeditDependency = AddEditDependency_Fragment.newInstance(b);
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(android.R.id.content, addeditDependency, AddEditDependency_Fragment.TAG);
             fragmentTransaction.addToBackStack(null);
@@ -75,7 +74,7 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
         addeditDependency.setPresenter(addeditPresenter);
     }
 
-
+    /*
     @Override
     public void editDependency(int item) {
 
@@ -97,6 +96,7 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
         // 3. Si necesitamos, se asigna el presentador a su fragment
         detailDependency.setPresenter(detailDependencyPresenter);
     }
+    */
 
     @Override
     public void addingNewDependency(Dependency d) {

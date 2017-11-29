@@ -19,6 +19,7 @@ import com.example.inventoryfragment.db.repo.DependencyRepository;
 import com.example.inventoryfragment.ui.base.BaseFragment;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;
+import com.example.inventoryfragment.utils.AddEdit;
 
 /**
  * Fragment, añadir/editar una dependencia
@@ -35,6 +36,14 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
     TextInputEditText tID_DependencyShortname;
     TextInputEditText tID_DependencyDescription;
 
+    private static boolean dependenciaModificada;
+    private static int posicionAModificar;
+
+    private static AddEdit mode;
+
+    private static Dependency dependency;
+
+
     // Instancia de interfaz que interactuará con la Activity
     // Llamará al método que nos devuelve a la lista de dependencias
     AddNewDependencyClickListener callback;
@@ -43,9 +52,15 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
 
         AddEditDependency_Fragment addeditDependency = new AddEditDependency_Fragment();
 
+        mode = new AddEdit(AddEdit.ADD_MODE);
+        dependenciaModificada = false;
+
         if (args != null)
         {
             addeditDependency.setArguments(args);
+            mode.setMode(AddEdit.EDIT_MODE);
+            dependency = (Dependency) args.getParcelable(Dependency.TAG);
+            posicionAModificar = args.getInt("posicion");
         }
 
         return addeditDependency;
@@ -66,6 +81,7 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 tID_DependencyDescription.setError(null);
+                dependenciaModificada = true;
             }
 
             @Override
@@ -120,11 +136,6 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
             }
         });
 
-        if (getArguments() != null)
-        {
-
-        }
-
         return rootView;
     }
 
@@ -149,6 +160,20 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
 
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if (mode.getMode() == AddEdit.EDIT_MODE)
+        {
+            tID_DependencyShortname.setText(dependency.getShortname());
+            tID_DependencyShortname.setEnabled(false);
+            tID_DependencyDescription.setText(dependency.getDescription());
+            tID_DependencyName.setText(dependency.getName());
+            tID_DependencyName.setEnabled(false);
+        }
+    }
+
     // Si to-do es correcto, volvemos para mostrar la lista de dependencias
     // con la nueva dependencia añadida
     @Override
@@ -161,11 +186,19 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
 
         DependencyRepository.getInstance().addDependency(newDep);
         */
-        callback.addingNewDependency(new Dependency(0, tID_DependencyName.getText().toString(),
-                tID_DependencyShortname.getText().toString(),
-                tID_DependencyDescription.getText().toString()));
-        callback.returnToDependencyList();
 
+        if (dependenciaModificada)
+        {
+            // Eliminar posicion
+            DependencyRepository.getInstance().getDependencies().remove(posicionAModificar);
+        }
+
+        dependency = new Dependency(0, tID_DependencyName.getText().toString(),
+                tID_DependencyShortname.getText().toString(),
+                tID_DependencyDescription.getText().toString());
+        callback.addingNewDependency(dependency);
+
+        callback.returnToDependencyList();
     }
 
     /**

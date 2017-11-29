@@ -52,8 +52,7 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
     interface ListDependencyListener {
 
         // Dos acciones que realiza la lista
-        void addNewDependency();
-        void editDependency(int item);
+        void addNewDependency(Bundle b);
     }
 
     public static ListDependency_Fragment newInstance(Bundle args) {
@@ -83,7 +82,7 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         fab_Dependencies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.addNewDependency();
+                callback.addNewDependency(null);
             }
         });
 
@@ -117,7 +116,10 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         listV_ListaDependencias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                callback.editDependency(position);
+                Bundle b = new Bundle();
+                b.putParcelable(Dependency.TAG, (Dependency)parent.getItemAtPosition(position));
+                b.putInt("posicion", position);
+                callback.addNewDependency(b);
             }
         });
     }

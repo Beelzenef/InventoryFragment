@@ -1,5 +1,7 @@
 package com.example.inventoryfragment.db.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import java.util.Comparator;
@@ -9,11 +11,13 @@ import java.util.Comparator;
  * @author Elena G (Beelzenef)
  */
 
-public class Dependency implements Comparable {
+public class Dependency implements Parcelable {
     private int _ID;
     private String name;
     private String shortname;
     private String description;
+
+    public static final String TAG = "dependency";
 
     // Getters y setters
 
@@ -58,6 +62,14 @@ public class Dependency implements Comparable {
         this.description = description;
     }
 
+    protected Dependency (Parcel in)
+    {
+        _ID = in.readInt();
+        name = in.readString();
+        shortname = in.readString();
+        description = in.readString();
+    }
+
     // Sobreescribiendo toString()
 
     @Override
@@ -65,10 +77,36 @@ public class Dependency implements Comparable {
         return this.shortname;
     }
 
-    @Override
+    /*@Override
     public int compareTo(@NonNull Object o) {
         return name.compareTo(((Dependency)o).getName());
     }
+    */
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this._ID);
+        dest.writeString(this.name);
+        dest.writeString(this.shortname);
+        dest.writeString(this.description);
+    }
+
+    public static final Creator<Dependency> CREATOR = new Creator<Dependency>() {
+        @Override
+        public Dependency createFromParcel(Parcel in) {
+            return new Dependency(in);
+        }
+
+        @Override
+        public Dependency[] newArray(int size) {
+            return new Dependency[size];
+        }
+    };
 
     public static class DependencyOrderBySortName implements Comparator<Dependency>
     {
