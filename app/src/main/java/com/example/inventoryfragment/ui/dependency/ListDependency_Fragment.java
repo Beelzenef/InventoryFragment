@@ -1,11 +1,14 @@
 package com.example.inventoryfragment.ui.dependency;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -16,6 +19,7 @@ import com.example.inventoryfragment.adapter.DependencyAdapter;
 import com.example.inventoryfragment.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
+import com.example.inventoryfragment.utils.CommonDialog;
 
 import java.util.List;
 
@@ -36,6 +40,46 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         super.onCreate(savedInstanceState);
         this.adapter = new DependencyAdapter(getActivity());
         setRetainInstance(true);
+    }
+
+    /**
+     * Menu contextual creado con la pulsación larga sobre un elemento de lista
+     * @param menu
+     * @param v
+     * @param menuInfo
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.secmenu_frag_listdependencies, menu);
+    }
+
+    /**
+     * Se implementan las diferentes acciones a realizar en las opciones mostradas en el menu contextual
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_listdependency_delete:
+
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+
+                Bundle b = new Bundle();
+                b.putInt("posicion", info.position);
+                b.putString(CommonDialog.MESSAGE, "¿Desea eliminar esta dependencia? Posición " + Integer.toString(info.position));
+                b.putString(CommonDialog.TITLE, "Eliminar dependencia");
+
+                // Confirmacion (?) interna, se elimina la dependencia
+                CommonDialog.showConfirmationDialog(b, getActivity(), presenter).show();
+
+                break;
+
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     public ListDependency_Fragment()
@@ -110,6 +154,9 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         //setListAdapter(new DependencyAdapter((getActivity())));
         setListAdapter(adapter);
 
+        // Asignamos menu contextual cuando la vista ya se ha creado
+        registerForContextMenu(getListView());
+
         // Cuando la lista está creada, mostrada, es entonces cuando lo obtenemos y le
         // añadimos listener para abrir DetailDependency
         ListView listV_ListaDependencias = (ListView) getListView().findViewById(android.R.id.list);
@@ -124,7 +171,12 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         });
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        adapter = null;
+        presenter.onDestroy();
+    }
 
     @Override
     public void setPresenter(BasePresenter presenter) {

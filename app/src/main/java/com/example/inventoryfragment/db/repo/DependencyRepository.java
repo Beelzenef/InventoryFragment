@@ -40,16 +40,11 @@ public class DependencyRepository {
     {
         addDependency(new Dependency(1, "1º CF Grado superior", "1CFGS", "Ciclos superiores, primer año, la locura"));
         addDependency(new Dependency(2, "2º CF Grado superior", "2CFGS", "Ciclos superiores, segundo año, la muerte"));
-        addDependency(new Dependency(3, "1º CF Grado superior", "1CFGS", "Ciclos superiores, primer año, la locura"));
-        addDependency(new Dependency(4, "2º CF Grado superior", "2CFGS", "Ciclos superiores, segundo año, la muerte"));
-        addDependency(new Dependency(5, "1º CF Grado superior", "1CFGS", "Ciclos superiores, primer año, la locura"));
-        addDependency(new Dependency(6, "2º CF Grado superior", "2CFGS", "Ciclos superiores, segundo año, la muerte"));
-        addDependency(new Dependency(7, "1º CF Grado superior", "1CFGS", "Ciclos superiores, primer año, la locura"));
-        addDependency(new Dependency(8, "2º CF Grado superior", "2CFGS", "Ciclos superiores, segundo año, la muerte"));
-        addDependency(new Dependency(9, "1º CF Grado superior", "1CFGS", "Ciclos superiores, primer año, la locura"));
-        addDependency(new Dependency(10, "2º CF Grado superior", "2CFGS", "Ciclos superiores, segundo año, la muerte"));
-        addDependency(new Dependency(11, "1º CF Grado superior", "1CFGS", "Ciclos superiores, primer año, la locura"));
-        addDependency(new Dependency(12, "1ESO", "1ESO", "Primero de ESO"));
+        addDependency(new Dependency(3, "1ºROL", "1ROL", "El primer y único curso de rolerística"));
+        addDependency(new Dependency(4, "3º ETSI", "3ETSI", "La ETSI mola mazo, pero es muy fea"));
+        addDependency(new Dependency(5, "1º ETSI", "1ETSI", "La ETSI mola mazo, pero es muy fea"));
+        addDependency(new Dependency(6, "3ESO", "3ESO", "Tercer curso de ESO"));
+        addDependency(new Dependency(7, "1ESO", "1ESO", "Primero de ESO"));
     }
 
     /**

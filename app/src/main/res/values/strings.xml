@@ -31,4 +31,9 @@
     <string name="action_save">Guardar</string>
     <string name="action_account_settings">Ajustes de cuenta</string>
     <string name="action_general_settings">Ajustes</string>
+
+    <string name="menuc_deletedependency">Eliminar</string>
+
+    <string name="btn_Confirmar">Confirmar</string>
+    <string name="btn_NoConfirmar">Cancelar</string>
 </resources>

@@ -5,4 +5,6 @@ package com.example.inventoryfragment.ui.base;
  */
 
 public interface BasePresenter {
+
+    void onDestroy();
 }

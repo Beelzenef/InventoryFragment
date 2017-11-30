@@ -47,4 +47,10 @@ public class AddEditDependencyPresenter implements AddEditDependencyContract.Pre
     public void onSuccess() {
         view.addingCorrectDependency();
     }
+
+    @Override
+    public void onDestroy() {
+        view = null;
+        interactor = null;
+    }
 }

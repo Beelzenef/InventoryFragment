@@ -36,4 +36,20 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     public void addNewDependency(String name, String shortname, String desc) {
         listDependencyInteractor.addNewDependency(name, shortname, desc);
     }
+
+    @Override
+    public void removeItem(int position) {
+        listDependencyInteractor.removeDependency(position);
+    }
+
+    @Override
+    public void confirmRemoving(int position) {
+        removeItem(position);
+    }
+
+    @Override
+    public void onDestroy() {
+        view = null;
+        listDependencyInteractor = null;
+    }
 }
