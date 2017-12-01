@@ -16,6 +16,5 @@ public interface ListDependencyInteractor {
     }
 
     void loadDependencies();
-    void addNewDependency(String name, String shortname, String desc);
     void removeDependency(int position);
 }

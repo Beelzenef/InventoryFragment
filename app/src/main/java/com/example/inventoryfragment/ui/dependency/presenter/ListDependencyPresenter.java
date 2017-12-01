@@ -33,11 +33,6 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     }
 
     @Override
-    public void addNewDependency(String name, String shortname, String desc) {
-        listDependencyInteractor.addNewDependency(name, shortname, desc);
-    }
-
-    @Override
     public void removeItem(int position) {
         listDependencyInteractor.removeDependency(position);
     }

@@ -1,7 +1,6 @@
 package com.example.inventoryfragment.ui.dependency;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import com.example.inventoryfragment.adapter.DependencyAdapter;
 import com.example.inventoryfragment.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
+import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
 import com.example.inventoryfragment.utils.CommonDialog;
 
 import java.util.List;
@@ -82,10 +82,7 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         return super.onContextItemSelected(item);
     }
 
-    public ListDependency_Fragment()
-    {
 
-    }
 
     @Override
     public void showDependencies(List<Dependency> list) {
@@ -117,6 +114,10 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
 
         View rootView = inflater.inflate(R.layout.dependencylist_fragment, container, false);
 
+        // Como el fragment mantiene el estado ( y solo se elimina la vista) se debe reinicializar el presenter
+        // cuando se crea la vista
+        this.presenter = new ListDependencyPresenter(this);
+
         // Como estamos en Fragment que inflamos con rootView, usamos rootview para buscar el FAB
         FloatingActionButton fab_Dependencies = (FloatingActionButton) rootView.findViewById(R.id.fab_dependency);
 
@@ -131,8 +132,8 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         });
 
         // Cargar toda dependencia:
-        presenter.loadDependencies();
 
+        presenter.loadDependencies();
         return rootView;
     }
 
@@ -169,6 +170,12 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
                 callback.addNewDependency(b);
             }
         });
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callback = null;
     }
 
     @Override

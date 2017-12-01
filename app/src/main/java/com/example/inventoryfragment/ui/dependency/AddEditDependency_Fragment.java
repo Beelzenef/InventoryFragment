@@ -19,6 +19,7 @@ import com.example.inventoryfragment.db.repo.DependencyRepository;
 import com.example.inventoryfragment.ui.base.BaseFragment;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;
+import com.example.inventoryfragment.ui.dependency.presenter.AddEditDependencyPresenter;
 import com.example.inventoryfragment.utils.AddEdit;
 
 /**
@@ -53,7 +54,6 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
         AddEditDependency_Fragment addeditDependency = new AddEditDependency_Fragment();
 
         mode = new AddEdit(AddEdit.ADD_MODE);
-        dependenciaModificada = false;
 
         if (args != null)
         {
@@ -70,6 +70,12 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.dependencyaddedit_fragment, container, false);
+
+        dependenciaModificada = false;
+
+        // Como el fragment mantiene el estado ( y solo se elimina la vista) se debe reinicializar el presenter
+        // cuando se crea la vista
+        this.presenter = new AddEditDependencyPresenter(this);
 
         tID_DependencyDescription = (TextInputEditText) rootView.findViewById(R.id.edtDescription);
         tID_DependencyDescription.addTextChangedListener(new TextWatcher() {
@@ -140,6 +146,13 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
+
+    @Override
     public void setPresenter(BasePresenter presenter) {
         this.presenter = (AddEditDependencyContract.Presenter) presenter;
     }
@@ -187,16 +200,27 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
         DependencyRepository.getInstance().addDependency(newDep);
         */
 
+        /*
         if (dependenciaModificada)
         {
             // Eliminar posicion
             DependencyRepository.getInstance().getDependencies().remove(posicionAModificar);
         }
+        */
 
-        dependency = new Dependency(0, tID_DependencyName.getText().toString(),
-                tID_DependencyShortname.getText().toString(),
-                tID_DependencyDescription.getText().toString());
-        callback.addingNewDependency(dependency);
+        if (mode.getMode() == AddEdit.EDIT_MODE)
+        {
+            dependency = new Dependency(0, tID_DependencyName.getText().toString(),
+                    tID_DependencyShortname.getText().toString(),
+                    tID_DependencyDescription.getText().toString());
+            presenter.editDependency(dependency);
+        }
+
+        if (mode.getMode() == AddEdit.ADD_MODE) {
+            presenter.addNewDependency(tID_DependencyName.getText().toString(),
+                    tID_DependencyShortname.getText().toString(),
+                    tID_DependencyDescription.getText().toString());
+        }
 
         callback.returnToDependencyList();
     }
@@ -219,6 +243,19 @@ public class AddEditDependency_Fragment extends BaseFragment implements AddEditD
     interface AddNewDependencyClickListener
     {
         void addingNewDependency(Dependency d);
+        void updateDependency(Dependency d);
         void returnToDependencyList();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callback = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 }

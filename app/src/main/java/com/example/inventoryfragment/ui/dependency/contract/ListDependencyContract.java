@@ -19,7 +19,6 @@ public interface ListDependencyContract {
 
     interface Presenter extends ListPresenter {
         void loadDependencies();
-        void addNewDependency(String name, String shortname, String desc);
 
     }
 }

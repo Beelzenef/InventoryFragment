@@ -21,10 +21,10 @@ import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPrese
 public class DependencyActivity extends BaseActivity implements ListDependency_Fragment.ListDependencyListener, AddEditDependency_Fragment.AddNewDependencyClickListener {
 
     private ListDependency_Fragment listDependency;
-    private ListDependencyPresenter listPresenter;
+    //private ListDependencyPresenter listPresenter;
 
     private AddEditDependency_Fragment addeditDependency;
-    private AddEditDependencyPresenter addeditPresenter;
+
 
     private DetailDependency_Fragment detailDependency;
     private DetailDependencyPresenter detailDependencyPresenter;
@@ -48,10 +48,10 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
         }
 
         // 2. Creando el presentador, pasando por constructor la vista correspondiente (su fragment)
-        listPresenter = new ListDependencyPresenter(listDependency);
+       // listPresenter = new ListDependencyPresenter(listDependency);
 
         // 3. Si necesitamos, se asigna el presentador a su fragment
-        listDependency.setPresenter(listPresenter);
+        //listDependency.setPresenter(listPresenter);
     }
 
     @Override
@@ -69,9 +69,9 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
             fragmentTransaction.commit();
         }
         // 2. Creando el presentador, pasando por constructor la vista correspondiente (su fragment)
-        addeditPresenter = new AddEditDependencyPresenter(addeditDependency);
+        //addeditPresenter = new AddEditDependencyPresenter(addeditDependency);
         // 3. Si necesitamos, se asigna el presentador a su fragment
-        addeditDependency.setPresenter(addeditPresenter);
+        //addeditDependency.setPresenter(addeditPresenter);
     }
 
     /*
@@ -98,9 +98,15 @@ public class DependencyActivity extends BaseActivity implements ListDependency_F
     }
     */
 
+
     @Override
     public void addingNewDependency(Dependency d) {
-        listPresenter.addNewDependency(d.getName(), d.getShortname(), d.getDescription());
+
+    }
+
+    @Override
+    public void updateDependency(Dependency d) {
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.inventoryfragment.ui.dependency.contract;
 
+import com.example.inventoryfragment.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.base.BaseView;
 
@@ -20,5 +21,7 @@ public interface AddEditDependencyContract {
     interface Presenter extends BasePresenter {
 
         void validateDependency(String name, String shortname, String desc);
+        void addNewDependency(String name, String shortname, String desc);
+        void editDependency(Dependency d);
     }
 }

@@ -2,6 +2,7 @@ package com.example.inventoryfragment.ui.dependency.presenter;
 
 import android.widget.Toast;
 
+import com.example.inventoryfragment.db.model.Dependency;
 import com.example.inventoryfragment.ui.dependency.AddEditDependency_Fragment;
 import com.example.inventoryfragment.ui.dependency.DetailDependency_Fragment;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;
@@ -26,6 +27,16 @@ public class AddEditDependencyPresenter implements AddEditDependencyContract.Pre
     @Override
     public void validateDependency(String name, String shortname, String desc) {
         interactor.validateDependency(name, shortname, desc, this);
+    }
+
+    @Override
+    public void addNewDependency(String name, String shortname, String desc) {
+        interactor.addNewDependency(name, shortname, desc);
+    }
+
+    @Override
+    public void editDependency(Dependency d) {
+        interactor.updateDependency(d);
     }
 
     @Override
