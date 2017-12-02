@@ -7,7 +7,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.example.inventoryfragment.R;
-import com.example.inventoryfragment.ui.base.ListPresenter;
+import com.example.inventoryfragment.db.model.Dependency;
+import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 
 /**
@@ -21,7 +22,7 @@ public class CommonDialog {
 
 
 
-    public static Dialog showConfirmationDialog(final Bundle b, Context context, final ListPresenter p)
+    public static Dialog showConfirmationDialog(final Bundle b, Context context, final ListDependencyContract.Presenter p)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -31,7 +32,7 @@ public class CommonDialog {
                 .setPositiveButton(R.string.btn_Confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        p.confirmRemoving(b.getInt("posicion"));
+                        p.removeItem((Dependency)b.getParcelable(Dependency.TAG));
                     }
                 })
                 .setNegativeButton(R.string.btn_NoConfirmar, new DialogInterface.OnClickListener() {

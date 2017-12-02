@@ -68,8 +68,9 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 
                 Bundle b = new Bundle();
-                b.putInt("posicion", info.position);
-                b.putString(CommonDialog.MESSAGE, "¿Desea eliminar esta dependencia? Posición " + Integer.toString(info.position));
+                b.putParcelable(Dependency.TAG, adapter.getItem(info.position));
+                b.putString(CommonDialog.MESSAGE, "¿Desea eliminar la dependencia " +
+                        adapter.getItem(info.position).getName() + "?");
                 b.putString(CommonDialog.TITLE, "Eliminar dependencia");
 
                 // Confirmacion (?) interna, se elimina la dependencia

@@ -16,5 +16,5 @@ public interface ListDependencyInteractor {
     }
 
     void loadDependencies();
-    void removeDependency(int position);
+    void removeDependency(Dependency d);
 }

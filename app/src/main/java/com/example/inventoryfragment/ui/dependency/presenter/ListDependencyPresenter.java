@@ -33,13 +33,8 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     }
 
     @Override
-    public void removeItem(int position) {
-        listDependencyInteractor.removeDependency(position);
-    }
-
-    @Override
-    public void confirmRemoving(int position) {
-        removeItem(position);
+    public void removeItem(Dependency d) {
+        listDependencyInteractor.removeDependency(d);
     }
 
     @Override

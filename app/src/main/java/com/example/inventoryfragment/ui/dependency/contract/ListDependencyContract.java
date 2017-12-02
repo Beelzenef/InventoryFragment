@@ -3,7 +3,6 @@ package com.example.inventoryfragment.ui.dependency.contract;
 import com.example.inventoryfragment.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.base.BaseView;
-import com.example.inventoryfragment.ui.base.ListPresenter;
 
 import java.util.List;
 
@@ -17,8 +16,8 @@ public interface ListDependencyContract {
         void showDependencies(List<Dependency> list);
     }
 
-    interface Presenter extends ListPresenter {
+    interface Presenter extends BasePresenter {
         void loadDependencies();
-
+        void removeItem(Dependency d);
     }
 }
