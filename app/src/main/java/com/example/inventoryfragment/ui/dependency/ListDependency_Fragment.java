@@ -1,12 +1,17 @@
 package com.example.inventoryfragment.ui.dependency;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +24,7 @@ import com.example.inventoryfragment.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
+import com.example.inventoryfragment.ui.prefs.OrderSettingsActivity;
 import com.example.inventoryfragment.utils.CommonDialog;
 
 import java.util.List;
@@ -121,6 +127,8 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
 
         // Como estamos en Fragment que inflamos con rootView, usamos rootview para buscar el FAB
         FloatingActionButton fab_Dependencies = (FloatingActionButton) rootView.findViewById(R.id.fab_dependency);
+        Toolbar toolBar_dependencies = (Toolbar) rootView.findViewById(R.id.toolbar_Dependency);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolBar_dependencies);
 
         // Si el FAB se encontrase en el XML de la Activity, buscamos desde la Activity
         //FloatingActionButton fab_Dependencies = (FloatingActionButton) getActivity().findViewById(R.id.fab_dependency);
@@ -189,5 +197,23 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
     @Override
     public void setPresenter(BasePresenter presenter) {
         this.presenter = (ListDependencyContract.Presenter) presenter;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_activity_depsorder, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case R.id.action_orderdeps_settings:
+                startActivity(new Intent(getActivity(), OrderSettingsActivity.class));
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

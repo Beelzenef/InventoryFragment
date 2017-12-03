@@ -31,6 +31,7 @@
     <string name="action_save">Guardar</string>
     <string name="action_account_settings">Ajustes de cuenta</string>
     <string name="action_general_settings">Ajustes</string>
+    <string name="action_orderdeps_settings">Ordenar</string>
 
     <string name="menuc_deletedependency">Eliminar</string>
 

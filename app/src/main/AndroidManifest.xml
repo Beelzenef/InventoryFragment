@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.inventoryfragment">
+    package="com.example.inventoryfragment">
 
     <application
         android:name=".ui.inventory.InventoryApplication"
@@ -10,31 +10,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SplashActivity">
-        </activity>
+        <activity android:name=".ui.SplashActivity"></activity>
         <activity
             android:name=".ui.login.LoginViewImpl"
             android:theme="@style/LoginTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.inventory.InventoryActivity"/>
-        <activity android:name=".ui.DashboardActivity">
-        </activity>
-        <activity android:name=".ui.product.ProductActivity">
-        </activity>
-        <activity android:name=".ui.dependency.DependencyActivity">
-        </activity>
-        <activity android:name=".ui.sector.SectorActivity">
-        </activity>
-        <activity android:name=".ui.prefs.AccountSettingsActivity"/>
-        <activity android:name=".ui.prefs.GeneralSettingsActivity"/>
-        <activity android:name=".ui.about.AboutActivity"/>
-        <activity android:name=".ui.base.BaseActivity">
-        </activity>
+        <activity android:name=".ui.inventory.InventoryActivity" />
+        <activity android:name=".ui.DashboardActivity"></activity>
+        <activity android:name=".ui.product.ProductActivity"></activity>
+        <activity android:name=".ui.dependency.DependencyActivity"></activity>
+        <activity android:name=".ui.sector.SectorActivity"></activity>
+        <activity android:name=".ui.prefs.AccountSettingsActivity" />
+        <activity android:name=".ui.prefs.GeneralSettingsActivity" />
+        <activity android:name=".ui.about.AboutActivity" />
+        <activity android:name=".ui.base.BaseActivity"></activity>
+        <activity android:name=".ui.prefs.OrderSettingsActivity"></activity>
     </application>
 
 </manifest>

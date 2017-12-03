@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_title_orderingdeps">
+
+        <ListPreference
+            android:entries="@array/pref_entries_orderdeps"
+            android:entryValues="@array/pref_entriesvalues_orderdeps"
+            android:key="orderprefs"
+            android:summary="@string/pref_summary_orderdeps"
+            android:title="@string/pref_title_orderdeps"
+            android:defaultValue="1"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="descorder"
+            android:summary="@string/pref_description_descorder"
+            android:summaryOff="Ordenar de forma descendente"
+            android:summaryOn="Ordenar de forma ascendente"
+            android:title="@string/pref_title_descorder"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

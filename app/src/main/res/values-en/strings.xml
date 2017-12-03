@@ -33,6 +33,7 @@
     <string name="action_save">Save</string>
     <string name="action_account_settings">Account settings</string>
     <string name="action_general_settings">Settings</string>
+    <string name="action_orderdeps_settings">Order</string>
 
     <string name="menuc_deletedependency">Delete</string>
 

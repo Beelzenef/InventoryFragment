@@ -37,4 +37,23 @@
     <string name="pref_title_rememberme">Recordar usuario</string>
     <string name="pref_summary_rememberme">Recordar usuario para el siguiente inicio de sesion</string>
 
+    <!-- order settings -->
+
+    <string name="pref_title_orderingdeps">Ordenando elementos</string>
+
+    <string name="pref_title_orderdeps">Ordenar por</string>
+    <string name="pref_summary_orderdeps">Elegir elemento para definir orden</string>
+
+    <string-array name="pref_entries_orderdeps">
+        <item>Nombre</item>
+        <item>ID</item>
+    </string-array>
+    <string-array name="pref_entriesvalues_orderdeps">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="pref_title_descorder">Orden descendente</string>
+    <string name="pref_description_descorder">Elegir orden ascendente o descendente</string>
+
 </resources>
