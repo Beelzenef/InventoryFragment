@@ -1,6 +1,6 @@
-package com.example.inventoryfragment.db.repo;
+package com.example.inventoryfragment.data.db.repo;
 
-import com.example.inventoryfragment.db.model.Dependency;
+import com.example.inventoryfragment.data.db.model.Dependency;
 
 import java.util.ArrayList;
 import java.util.Collections;

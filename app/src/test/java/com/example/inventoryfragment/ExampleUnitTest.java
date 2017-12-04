@@ -1,7 +1,7 @@
 package com.example.inventoryfragment;
 
-import com.example.inventoryfragment.db.model.User;
-import com.example.inventoryfragment.db.repo.UserRepository;
+import com.example.inventoryfragment.data.db.model.User;
+import com.example.inventoryfragment.data.db.repo.UserRepository;
 
 import org.junit.Before;
 import org.junit.Test;

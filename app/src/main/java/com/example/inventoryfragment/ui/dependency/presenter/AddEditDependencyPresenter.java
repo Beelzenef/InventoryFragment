@@ -1,10 +1,6 @@
 package com.example.inventoryfragment.ui.dependency.presenter;
 
-import android.widget.Toast;
-
-import com.example.inventoryfragment.db.model.Dependency;
-import com.example.inventoryfragment.ui.dependency.AddEditDependency_Fragment;
-import com.example.inventoryfragment.ui.dependency.DetailDependency_Fragment;
+import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;
 import com.example.inventoryfragment.ui.dependency.interactor.AddEditDependencyInteractor;
 import com.example.inventoryfragment.ui.dependency.interactor.AddEditDependencyInteractorImpl;

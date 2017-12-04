@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/action_orderdeps_settings"
-        android:title="@string/action_orderdeps_settings"
+        android:title="@string/menu_order_dependencies"
         app:showAsAction="never"/>
 
 </menu>

@@ -39,4 +39,6 @@
 
     <string name="btn_Confirmar">Accept</string>
     <string name="btn_NoConfirmar">Cancel</string>
+
+    <string name="menu_order_dependencies">Order</string>
 </resources>

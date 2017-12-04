@@ -9,17 +9,18 @@
             android:summary="@string/pref_summary_rememberme"
             android:summaryOff="No recordar usuario"
             android:summaryOn="Recordando usuario"
-            android:title="@string/pref_title_rememberme"/>
+            android:title="@string/pref_title_rememberme"
+            android:key="pref_key_current_user_rem"/>
         <EditTextPreference
             android:defaultValue="Usuario"
-            android:key="username"
+            android:key="pref_key_current_user_name"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:summary="@string/pref_summary_username"
             android:title="@string/pref_title_username"/>
         <EditTextPreference
             android:inputType="textPassword"
-            android:key="password"
+            android:key="pref_key_current_user_password"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:summary="@string/pref_summary_password"

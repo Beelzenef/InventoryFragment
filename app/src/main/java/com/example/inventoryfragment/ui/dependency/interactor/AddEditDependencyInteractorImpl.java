@@ -2,8 +2,8 @@ package com.example.inventoryfragment.ui.dependency.interactor;
 
 import android.text.TextUtils;
 
-import com.example.inventoryfragment.db.model.Dependency;
-import com.example.inventoryfragment.db.repo.DependencyRepository;
+import com.example.inventoryfragment.data.db.model.Dependency;
+import com.example.inventoryfragment.data.db.repo.DependencyRepository;
 
 /**
  * Created by usuario on 24/11/17.

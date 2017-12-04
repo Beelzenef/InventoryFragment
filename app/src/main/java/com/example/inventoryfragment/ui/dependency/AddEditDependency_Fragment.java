@@ -5,17 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.inventoryfragment.R;
-import com.example.inventoryfragment.db.model.Dependency;
-import com.example.inventoryfragment.db.repo.DependencyRepository;
+import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BaseFragment;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.AddEditDependencyContract;

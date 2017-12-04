@@ -1,6 +1,6 @@
 package com.example.inventoryfragment.ui.dependency.contract;
 
-import com.example.inventoryfragment.db.model.Dependency;
+import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.base.BaseView;
 

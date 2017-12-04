@@ -2,7 +2,7 @@ package com.example.inventoryfragment.ui.login.interactor;
 
 import android.text.TextUtils;
 
-import com.example.inventoryfragment.db.repo.UserRepository;
+import com.example.inventoryfragment.data.db.repo.UserRepository;
 import com.example.inventoryfragment.utils.CommonUtils;
 
 /**

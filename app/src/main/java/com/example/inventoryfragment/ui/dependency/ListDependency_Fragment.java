@@ -20,7 +20,7 @@ import android.widget.ListView;
 
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.adapter.DependencyAdapter;
-import com.example.inventoryfragment.db.model.Dependency;
+import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
@@ -202,6 +202,7 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_activity_depsorder, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

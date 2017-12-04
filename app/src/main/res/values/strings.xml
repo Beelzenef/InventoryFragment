@@ -37,4 +37,6 @@
 
     <string name="btn_Confirmar">Confirmar</string>
     <string name="btn_NoConfirmar">Cancelar</string>
+
+    <string name="menu_order_dependencies">Ordenar</string>
 </resources>

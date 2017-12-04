@@ -10,8 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.inventoryfragment.R;
-import com.example.inventoryfragment.db.model.Dependency;
-import com.example.inventoryfragment.db.repo.DependencyRepository;
+import com.example.inventoryfragment.data.db.model.Dependency;
+import com.example.inventoryfragment.data.db.repo.DependencyRepository;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
 // Se ha de importar la R porque estamos en un package "aparte" que utiliza la Clase R

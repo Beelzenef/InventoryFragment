@@ -1,4 +1,4 @@
-package com.example.inventoryfragment.db.model;
+package com.example.inventoryfragment.data.db.model;
 
 import java.security.Permission;
 import java.util.ArrayList;

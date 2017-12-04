@@ -1,9 +1,7 @@
 package com.example.inventoryfragment.ui.dependency.interactor;
 
-import com.example.inventoryfragment.db.model.Dependency;
-import com.example.inventoryfragment.db.repo.DependencyRepository;
-
-import java.util.List;
+import com.example.inventoryfragment.data.db.model.Dependency;
+import com.example.inventoryfragment.data.db.repo.DependencyRepository;
 
 /**
  * Created by usuario on 27/11/17.

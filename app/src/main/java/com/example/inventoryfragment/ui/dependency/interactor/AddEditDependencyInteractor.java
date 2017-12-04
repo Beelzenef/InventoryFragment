@@ -1,6 +1,6 @@
 package com.example.inventoryfragment.ui.dependency.interactor;
 
-import com.example.inventoryfragment.db.model.Dependency;
+import com.example.inventoryfragment.data.db.model.Dependency;
 
 /**
  * Created by usuario on 24/11/17.

@@ -7,8 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.example.inventoryfragment.R;
-import com.example.inventoryfragment.db.model.Dependency;
-import com.example.inventoryfragment.ui.base.BasePresenter;
+import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 
 /**

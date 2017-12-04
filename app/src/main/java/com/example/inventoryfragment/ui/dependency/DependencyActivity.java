@@ -1,18 +1,13 @@
 package com.example.inventoryfragment.ui.dependency;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.Toast;
 
 import com.example.inventoryfragment.R;
-import com.example.inventoryfragment.db.model.Dependency;
+import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BaseActivity;
-import com.example.inventoryfragment.ui.dependency.presenter.AddEditDependencyPresenter;
 import com.example.inventoryfragment.ui.dependency.presenter.DetailDependencyPresenter;
-import com.example.inventoryfragment.ui.dependency.presenter.ListDependencyPresenter;
 
 /**
  * Clase para gestionar las adapter en una lista
