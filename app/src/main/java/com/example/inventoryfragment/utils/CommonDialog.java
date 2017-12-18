@@ -19,8 +19,6 @@ public class CommonDialog {
     public static final String MESSAGE = "mensaje";
     public static final String TITLE = "title";
 
-
-
     public static Dialog showConfirmationDialog(final Bundle b, Context context, final ListDependencyContract.Presenter p)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

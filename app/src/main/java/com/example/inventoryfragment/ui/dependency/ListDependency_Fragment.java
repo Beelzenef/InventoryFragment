@@ -48,30 +48,22 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         setRetainInstance(true);
     }
 
-    /**
-     * Menu contextual creado con la pulsación larga sobre un elemento de lista
-     * @param menu
-     * @param v
-     * @param menuInfo
-     */
+    // Menu contextual creado con la pulsación larga sobre un elemento de lista
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         getActivity().getMenuInflater().inflate(R.menu.secmenu_frag_listdependencies, menu);
     }
 
-    /**
-     * Se implementan las diferentes acciones a realizar en las opciones mostradas en el menu contextual
-     * @param item
-     * @return
-     */
+    // Se implementan las diferentes acciones a realizar en las opciones mostradas en el menu contextual
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
             case R.id.action_listdependency_delete:
 
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+                AdapterView.AdapterContextMenuInfo info =
+                        (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 
                 Bundle b = new Bundle();
                 b.putParcelable(Dependency.TAG, adapter.getItem(info.position));
@@ -85,7 +77,6 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
                 break;
 
         }
-
         return super.onContextItemSelected(item);
     }
 
@@ -164,7 +155,20 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         //setListAdapter(new DependencyAdapter((getActivity())));
         setListAdapter(adapter);
 
+        // ActionBarContextMode: Activando modo multichoice en ListView con clicks largos
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        getListView().setMultiChoiceModeListener(new DependencyMultiChoiceListener(presenter));
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                getListView().setItemChecked(position, !presenter.isPositionChecked(position));
+                return true;
+            }
+        });
+
         // Asignamos menu contextual cuando la vista ya se ha creado
+        // ActionBarContextMode: o tenemos ActionBar o menú contextual, elegimos ActionBarContextMode
         registerForContextMenu(getListView());
 
         // Cuando la lista está creada, mostrada, es entonces cuando lo obtenemos y le

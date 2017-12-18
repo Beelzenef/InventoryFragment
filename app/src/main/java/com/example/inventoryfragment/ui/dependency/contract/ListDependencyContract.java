@@ -19,5 +19,12 @@ public interface ListDependencyContract {
     interface Presenter extends BasePresenter {
         void loadDependencies();
         void removeItem(Dependency d);
+
+        // ActionBarContextMode: Métodos para gestionar lista multiseleccionable
+        void deleteSelection();
+        void setNewSelection(int position);
+        void removeSelection(int position);
+        void clearSelection();
+        boolean isPositionChecked(int position);
     }
 }
