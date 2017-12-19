@@ -16,12 +16,12 @@ public class AppPreferencesHelper implements AccountPreferencesHelper {
 
     // Instancia para editar las preferencias
 
-    private static final SharedPreferences editorPreferencias;
+    private static final SharedPreferences editorPreferencias = null;
     private static AppPreferencesHelper instance;
 
     private AppPreferencesHelper()
     {
-        editorPreferencias = InventoryApplication.getContext().getDefaultSharedPreferences();
+        //editorPreferencias = InventoryApplication.getContext().getDefaultSharedPreferences();
     }
 
 

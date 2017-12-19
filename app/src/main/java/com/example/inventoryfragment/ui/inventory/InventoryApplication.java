@@ -23,7 +23,7 @@ public class InventoryApplication extends Application {
     }
 
     public InventoryApplication() {
-            appPreferencesHelper = AppPreferencesHelper.getInstance();
+            //appPreferencesHelper = AppPreferencesHelper.getInstance();
     }
 
     public AppPreferencesHelper getAppPreferencesHelper()
@@ -35,8 +35,8 @@ public class InventoryApplication extends Application {
         context = getApplicationContext();
     }
 
-    public AppPreferencesHelper getDefaultSharedPreferences()
+    /*public AppPreferencesHelper getDefaultSharedPreferences()
     {
         return InventoryApplication.context.getSharedPreferences("Inventory_pref", MODE_PRIVATE);
-    }
+    }*/
 }
