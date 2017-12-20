@@ -157,7 +157,7 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
 
         // ActionBarContextMode: Activando modo multichoice en ListView con clicks largos
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-        getListView().setMultiChoiceModeListener(new DependencyMultiChoiceListener(presenter));
+        getListView().setMultiChoiceModeListener(new DependencyMultiChoiceListener(presenter, adapter));
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override

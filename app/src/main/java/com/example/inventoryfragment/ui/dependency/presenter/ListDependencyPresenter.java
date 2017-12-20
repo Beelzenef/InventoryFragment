@@ -1,12 +1,16 @@
 package com.example.inventoryfragment.ui.dependency.presenter;
 
+import com.example.inventoryfragment.adapter.DependencyAdapter;
 import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.dependency.contract.ListDependencyContract;
 import com.example.inventoryfragment.ui.dependency.interactor.ListDependencyInteractor;
 import com.example.inventoryfragment.ui.dependency.interactor.ListDependencyInteractorImpl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by usuario on 23/11/17.
@@ -52,11 +56,24 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     // Método que elimina elementos seleccionados en el mapa
     @Override
-    public void deleteSelection() {
-        for (int i = 0; i < listaItemsSeleccionados.size(); i++)
+    public void deleteSelection(DependencyAdapter adapter) {
+
+        Set<Integer> posicionesSeleccionados = listaItemsSeleccionados.keySet();
+
+        ArrayList<Dependency> dependenciasABorrar = new ArrayList<>();
+
+        // Recogiendo los items a borrar de Clase Dependency:
+        for (Iterator<Integer> iterador = posicionesSeleccionados.iterator(); iterador.hasNext(); )
         {
-            // Removing items
+            dependenciasABorrar.add(adapter.getItem(iterador.next()));
         }
+
+        // Una vez recogidas todas las instancias que hay que borrar, interactor borra todas ellas:
+        for (int i = 0; i < dependenciasABorrar.size(); i++) {
+            listDependencyInteractor.removeDependency(dependenciasABorrar.get(i));
+        }
+
+        loadDependencies();
     }
 
     @Override
@@ -77,6 +94,6 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     // ¿Existe el elemento en el mapa?
     @Override
     public boolean isPositionChecked(int position) {
-        return listaItemsSeleccionados.get(position) == null? false : true;
+        return listaItemsSeleccionados.get(position) != null;
     }
 }

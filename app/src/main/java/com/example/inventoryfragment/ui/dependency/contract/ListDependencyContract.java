@@ -1,5 +1,6 @@
 package com.example.inventoryfragment.ui.dependency.contract;
 
+import com.example.inventoryfragment.adapter.DependencyAdapter;
 import com.example.inventoryfragment.data.db.model.Dependency;
 import com.example.inventoryfragment.ui.base.BasePresenter;
 import com.example.inventoryfragment.ui.base.BaseView;
@@ -21,7 +22,7 @@ public interface ListDependencyContract {
         void removeItem(Dependency d);
 
         // ActionBarContextMode: Métodos para gestionar lista multiseleccionable
-        void deleteSelection();
+        void deleteSelection(DependencyAdapter adapter);
         void setNewSelection(int position);
         void removeSelection(int position);
         void clearSelection();
