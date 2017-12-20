@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionModeStyle">@style/Widget.ActionMode</item>
+        <!-- Para que la ActionMode se sitúe sobre la Toolbar y no la desplace: SIN "android:" !!! -->
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
     <style name="LoginTheme" parent="AppTheme">
@@ -25,6 +28,22 @@
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <!-- ActionMode con el mismo estilo que ActionBar -->
+    <!--<style name="Widget.ActionMode" parent="Widget.AppCompat.ActionBar.Solid"/>-->
+    <!-- Estilo propio para ActionMode -->
+    <style name="Widget.ActionMode" parent="Widget.AppCompat.ActionBar">
+        <item name="actionModeBackground">@color/background_action_mode</item>
+        <item name="android:actionModeBackground">@color/background_action_mode</item>
+        <item name="background">@color/background_action_mode</item>
+        <item name="android:background">@color/background_action_mode</item>
+        <item name="android:titleTextStyle">@style/Widget.ActionMode.TitleTextStyle</item>
+        <item name="titleTextStyle">@style/Widget.ActionMode.TitleTextStyle</item>
+    </style>
+
+    <style name="Widget.ActionMode.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionMode.Title">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="LoginEditText">

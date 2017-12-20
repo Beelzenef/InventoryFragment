@@ -20,13 +20,15 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     private ListDependencyContract.View view;
     private ListDependencyInteractorImpl listDependencyInteractor;
+    private DependencyAdapter adapter;
 
     private HashMap<Integer, Boolean> listaItemsSeleccionados;
 
-    public ListDependencyPresenter(ListDependencyContract.View view) {
+    public ListDependencyPresenter(ListDependencyContract.View view, DependencyAdapter adapter) {
         this.view = view;
         this.listDependencyInteractor = new ListDependencyInteractorImpl(this);
         listaItemsSeleccionados = new HashMap<>();
+        this.adapter = adapter;
     }
 
 
@@ -56,24 +58,35 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     // Método que elimina elementos seleccionados en el mapa
     @Override
-    public void deleteSelection(DependencyAdapter adapter) {
+    public void deleteSelection() {
 
-        Set<Integer> posicionesSeleccionados = listaItemsSeleccionados.keySet();
+        /*Set<Integer> posicionesSeleccionados = listaItemsSeleccionados.keySet();
 
         ArrayList<Dependency> dependenciasABorrar = new ArrayList<>();
 
         // Recogiendo los items a borrar de Clase Dependency:
+        // for (Integer position : selection.keySet())
+            //dependenciasABorrar.add(getDependency(position));
         for (Iterator<Integer> iterador = posicionesSeleccionados.iterator(); iterador.hasNext(); )
         {
             dependenciasABorrar.add(adapter.getItem(iterador.next()));
         }
 
         // Una vez recogidas todas las instancias que hay que borrar, interactor borra todas ellas:
+        // for (Dependency d : dependenciasABorrar)
+            //removeItem(d);
         for (int i = 0; i < dependenciasABorrar.size(); i++) {
-            listDependencyInteractor.removeDependency(dependenciasABorrar.get(i));
+            removeItem(dependenciasABorrar.get(i));
         }
+        */
 
-        loadDependencies();
+        for (Integer position : listaItemsSeleccionados.keySet())
+            removeItem(getDependency(position));
+    }
+
+    private Dependency getDependency(int position)
+    {
+        return adapter.getItem(position);
     }
 
     @Override

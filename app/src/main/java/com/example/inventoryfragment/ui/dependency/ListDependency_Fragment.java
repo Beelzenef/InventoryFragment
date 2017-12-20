@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -80,7 +81,10 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         return super.onContextItemSelected(item);
     }
 
-
+    @Override
+    public void hideActionMode() {
+        //????
+    }
 
     @Override
     public void showDependencies(List<Dependency> list) {
@@ -114,7 +118,7 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
 
         // Como el fragment mantiene el estado ( y solo se elimina la vista) se debe reinicializar el presenter
         // cuando se crea la vista
-        this.presenter = new ListDependencyPresenter(this);
+        this.presenter = new ListDependencyPresenter(this, adapter);
 
         // Como estamos en Fragment que inflamos con rootView, usamos rootview para buscar el FAB
         FloatingActionButton fab_Dependencies = (FloatingActionButton) rootView.findViewById(R.id.fab_dependency);
@@ -127,6 +131,7 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         fab_Dependencies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideActionMode();
                 callback.addNewDependency(null);
             }
         });
@@ -184,6 +189,8 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
             }
         });
     }
+
+
 
     @Override
     public void onDetach() {
