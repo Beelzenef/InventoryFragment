@@ -20,10 +20,11 @@ public class InventoryApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        appPreferencesHelper = appPreferencesHelper.getInstance();
     }
 
     public InventoryApplication() {
-            this.context = getApplicationContext();
+            this.context = this;
     }
 
     public AppPreferencesHelper getAppPreferencesHelper()
