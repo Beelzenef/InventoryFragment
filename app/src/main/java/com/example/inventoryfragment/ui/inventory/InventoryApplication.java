@@ -14,7 +14,7 @@ import com.example.inventoryfragment.data.prefs.AppPreferencesHelper;
 public class InventoryApplication extends Application {
 
     private AppPreferencesHelper appPreferencesHelper;
-    private Context context;
+    private static Context context;
 
 
     @Override
@@ -23,7 +23,7 @@ public class InventoryApplication extends Application {
     }
 
     public InventoryApplication() {
-            //appPreferencesHelper = AppPreferencesHelper.getInstance();
+            this.context = getApplicationContext();
     }
 
     public AppPreferencesHelper getAppPreferencesHelper()
@@ -31,12 +31,12 @@ public class InventoryApplication extends Application {
         return appPreferencesHelper;
     }
 
-    public void getContext() {
-        context = getApplicationContext();
+    public static Context getContext() {
+        return context;
     }
 
-    /*public AppPreferencesHelper getDefaultSharedPreferences()
+    public AppPreferencesHelper getDefaultSharedPreferences()
     {
-        return InventoryApplication.context.getSharedPreferences("Inventory_pref", MODE_PRIVATE);
-    }*/
+        return appPreferencesHelper;
+    }
 }

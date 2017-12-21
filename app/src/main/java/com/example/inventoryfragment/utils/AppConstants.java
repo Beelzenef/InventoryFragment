@@ -7,4 +7,5 @@ package com.example.inventoryfragment.utils;
 public class AppConstants {
 
     public static final long NULL_INDEX = -1L;
+    public static final String PREF_NAME = "Nombre";
 }

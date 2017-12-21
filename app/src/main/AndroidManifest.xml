@@ -17,14 +17,16 @@
 
         </activity>
         <activity android:name=".ui.inventory.InventoryActivity"/>
-        <activity android:name=".ui.DashboardActivity"></activity>
-        <activity android:name=".ui.product.ProductActivity"></activity>
-        <activity android:name=".ui.dependency.DependencyActivity">
+        <activity android:name=".ui.DashboardActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.product.ProductActivity"></activity>
+        <activity android:name=".ui.dependency.DependencyActivity">
         </activity>
         <activity android:name=".ui.sector.SectorActivity">
 

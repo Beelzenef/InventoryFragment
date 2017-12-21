@@ -1,6 +1,9 @@
 package com.example.inventoryfragment.data.prefs;
 
+import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.inventoryfragment.ui.inventory.InventoryApplication;
 import com.example.inventoryfragment.utils.AppConstants;
@@ -16,15 +19,29 @@ public class AppPreferencesHelper implements AccountPreferencesHelper {
 
     // Instancia para editar las preferencias
 
-    private static final SharedPreferences editorPreferencias = null;
+    private static SharedPreferences editorPreferencias;
     private static AppPreferencesHelper instance;
+
+    private SharedPreferences.OnSharedPreferenceChangeListener listener;
+
+    private String TAG = "AppPreferencesHelper";
 
     private AppPreferencesHelper()
     {
         //editorPreferencias = InventoryApplication.getContext().getDefaultSharedPreferences();
+        editorPreferencias = ((Application)InventoryApplication.getContext()).getSharedPreferences(AppConstants.PREF_NAME, Context.MODE_PRIVATE);
+
+        listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                Log.i(TAG, "onSharedPreferenceChanged: La key ha cambiado" + key);
+            }
+        };
     }
 
-
+    public interface AppPreferencesListener {
+        void onSharedPreferencesChanged();
+    }
 
     /**
      * Metodo de acceso a la instancia, efecto Singleton
