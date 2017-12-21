@@ -1,6 +1,7 @@
 package com.example.inventoryfragment.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -67,6 +68,10 @@ public class DependencyAdapter extends ArrayAdapter<Dependency> {
             dependencyHolder.icon = (MaterialLetterIcon) view.findViewById(R.id.materialLetterIcon);
             dependencyHolder.txtV_Name = (TextView) view.findViewById(R.id.txtV_NameDependecy);
             dependencyHolder.txtV_ShortName = (TextView) view.findViewById(R.id.txtV_ShortnameDependecy);
+
+            // Cambiando fuentes programaticamente
+            Typeface typeface = Typeface.createFromAsset(view.getContext().getAssets(), "font/mastercomics.ttf");
+            dependencyHolder.txtV_ShortName.setTypeface(typeface);
 
             view.setTag(dependencyHolder);
         }
