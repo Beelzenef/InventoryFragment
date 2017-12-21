@@ -29,10 +29,14 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
 
     private OnSwitchCheckedChangeListener onSwitchCheckedChangeListener;
 
-    public SectionAdapter()
+    /// OnClickRecyclerView
+    private OnItemClickListener onItemClickListener;
+
+    public SectionAdapter(OnItemClickListener listener)
     {
         sections = SectionRepository.getInstance().getSections();
         sectionsModified = new ArrayList<>();
+        this.onItemClickListener = listener;
     }
 
     /**
@@ -40,10 +44,11 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
      * y tengamos que asegurar el estado dinánmico
      * @param sectionsModified
      */
-    public SectionAdapter(ArrayList<Section> sectionsModified)
+    public SectionAdapter(ArrayList<Section> sectionsModified, OnItemClickListener listener)
     {
         sections = SectionRepository.getInstance().getSections();
         this.sectionsModified = sectionsModified;
+        this.onItemClickListener = listener;
     }
 
     @Override
@@ -62,6 +67,8 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
 
         if (sections.get(position).isDefaultSection())
            holder.txtV_SectionShortName.setText(sections.get(position).getShortName());
+
+        holder.bind(sections.get(position), onItemClickListener);
     }
 
     /**
@@ -83,9 +90,19 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
         public SectionViewHolder(View itemView) {
             super(itemView);
 
-            swEnabled = (Switch) itemView.findViewById(R.id.sectionEnabled);
+            swEnabled = (Switch) itemView.findViewById(R.id.sw_Section);
             txtV_SectionName = (TextView) itemView.findViewById(R.id.txtV_NameSection);
             txtV_SectionShortName = (TextView) itemView.findViewById(R.id.txtV_ShortnameSection);
+        }
+
+        /// OnClickRecyclerView: asignando evento onClick
+        public void bind(final Section s, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(s);
+                }
+            });
         }
     }
 
@@ -105,5 +122,12 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
 
             // Resolver estado dinámico
         }
+    }
+
+
+    /// OnClickRecyclerView: interfaz para gestionar clicks
+
+    public interface OnItemClickListener {
+        void onItemClick(Section s);
     }
 }

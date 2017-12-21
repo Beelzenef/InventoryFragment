@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Toast;
 
 import com.example.inventoryfragment.R;
 import com.example.inventoryfragment.adapter.SectionAdapter;
@@ -16,6 +17,9 @@ public class SectorActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private SectionAdapter sectionAdapter;
+
+    /// OnClickRecyclerView: integrando el interfaz en la Clase, sin implementación
+    private SectionAdapter.OnItemClickListener onItemClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +35,19 @@ public class SectorActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_Section);
         setSupportActionBar(toolbar);
 
+        onItemClickListener = new SectionAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Section s) {
+                Toast.makeText(SectorActivity.this, "Has pulsado un item", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        };
+
         if (savedInstanceState != null) {
-            sectionAdapter = new SectionAdapter(savedInstanceState.<Section>getParcelableArrayList("seccion"));
+            sectionAdapter = new SectionAdapter(savedInstanceState.<Section>getParcelableArrayList("seccion"), onItemClickListener);
         }
         else {
-            sectionAdapter = new SectionAdapter();
+            sectionAdapter = new SectionAdapter(onItemClickListener);
         }
 
         recyclerView.setAdapter(sectionAdapter);

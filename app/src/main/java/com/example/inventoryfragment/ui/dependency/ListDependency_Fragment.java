@@ -131,7 +131,7 @@ public class ListDependency_Fragment extends ListFragment implements ListDepende
         fab_Dependencies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideActionMode();
+                getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
                 callback.addNewDependency(null);
             }
         });
