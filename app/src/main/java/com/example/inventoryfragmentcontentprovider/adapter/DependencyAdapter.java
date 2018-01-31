@@ -60,8 +60,6 @@ public class DependencyAdapter extends ArrayAdapter<Dependency>{
             //reutilizar la ya creada, y solo tener que meter los nuevos datos.
             dependencyHolder.icon = (MaterialLetterIcon) view.findViewById(R.id.icon);
             dependencyHolder.txvName = (TextView) view.findViewById(R.id.txvName);
-            //AÑADIMOS FUENTE DESDE CODIGO. DESDE UN XML SOLO ES PARA API +26
-            dependencyHolder.txvName.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/crypt.ttf"));
             dependencyHolder.txvShortname = (TextView) view.findViewById(R.id.txvShortname);
 
             //El tag puede parecer el mismo pero es diferente, ya que se crea un nuevo DependencyHolder

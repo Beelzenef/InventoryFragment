@@ -1,5 +1,7 @@
 package com.example.inventoryfragmentcontentprovider.data.db.repository;
 
+import com.example.inventoryfragmentcontentprovider.data.db.InteractorCallback;
+import com.example.inventoryfragmentcontentprovider.data.db.dao.SectorDao;
 import com.example.inventoryfragmentcontentprovider.data.db.model.Sector;
 
 import java.util.ArrayList;
@@ -14,28 +16,15 @@ public class SectorRepository {
 
     private static SectorRepository sectorRepository;
 
+    private SectorDao sectorDao;
+
     static {
         sectorRepository = new SectorRepository();
     }
 
     public SectorRepository() {
         this.sectors = new ArrayList();
-        initialize();
-    }
-
-    public void initialize() {
-        addSector(new Sector(1, "Armario", "ARM1", "Armario principal del aula 1", 1, true, true));
-        addSector(new Sector(2, "Armario", "ARM2", "Armario secundario del aula 1", 1, false, false));
-        addSector(new Sector(3, "Estanteria", "EST1", "Estanteria principal del aula 3", 3, false, false));
-        addSector(new Sector(4, "Armario", "ARM1", "Armario principal del aula 1", 1, true, true));
-        addSector(new Sector(5, "Armario", "ARM2", "Armario secundario del aula 1", 1, false, false));
-        addSector(new Sector(6, "Estanteria", "EST1", "Estanteria principal del aula 3", 3, false, false));
-        addSector(new Sector(7, "Armario", "ARM1", "Armario principal del aula 1", 1, true, true));
-        addSector(new Sector(8, "Armario", "ARM2", "Armario secundario del aula 1", 1, false, false));
-        addSector(new Sector(9, "Estanteria", "EST1", "Estanteria principal del aula 3", 3, false, false));
-        addSector(new Sector(10, "Armario", "ARM1", "Armario principal del aula 1", 1, true, true));
-        addSector(new Sector(11, "Armario", "ARM2", "Armario secundario del aula 1", 1, false, false));
-        addSector(new Sector(12, "Estanteria", "EST1", "Estanteria principal del aula 3", 3, false, false));
+        this.sectorDao = new SectorDao();
     }
 
     public void addSector (Sector sector) {
@@ -45,11 +34,58 @@ public class SectorRepository {
     public static SectorRepository getInstance() {
         //Otra opción para inicializar es esta.
         if (sectorRepository == null)
-            return sectorRepository;
+            sectorRepository = new SectorRepository();
         return sectorRepository;
     }
 
     public ArrayList<Sector> getSectors() {
+
+        sectors = sectorDao.loadAll();
         return sectors;
+    }
+
+    public long addSector (Sector s, InteractorCallback c) {
+        try {
+            long resultado = sectorDao.save(s);
+            if (resultado == 0) {
+                c.onError(new Exception("Error al agregar sector"));
+            } else {
+                c.onSuccess();
+            }
+        } catch (Exception e) {
+            c.onError(new Exception("Error: " + e.getMessage(), e));
+        }
+
+        return 0;
+    }
+
+    public long deleteSector (Sector s, InteractorCallback c) {
+        try {
+            long resultado = sectorDao.delete(s);
+            if (resultado == 0) {
+                c.onError(new Exception("Error al eliminar sector"));
+            } else {
+                c.onSuccess();
+            }
+        } catch (Exception e) {
+            c.onError(new Exception("Error: " + e.getMessage(), e));
+        }
+
+        return 0;
+    }
+
+    public long updateSector (Sector s, InteractorCallback c) {
+        try {
+            long resultado = sectorDao.update(s);
+            if (resultado == 0) {
+                c.onError(new Exception("Error al actualizar sector"));
+            } else {
+                c.onSuccess();
+            }
+        } catch (Exception e) {
+            c.onError(new Exception("Error: " + e.getMessage(), e));
+        }
+
+        return 0;
     }
 }

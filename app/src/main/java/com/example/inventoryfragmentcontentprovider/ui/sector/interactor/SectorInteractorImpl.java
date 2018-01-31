@@ -7,7 +7,7 @@ import com.example.inventoryfragmentcontentprovider.data.db.repository.SectorRep
  * Created by carlos on 10/12/2017.
  */
 
-public class SectorInteractorImpl implements SectorInteractor{
+public class SectorInteractorImpl implements SectorInteractor {
 
     OnLoadAdapterListener listener;
 

@@ -34,7 +34,7 @@ public class SectorActivity extends AppCompatActivity implements ContractSector.
         recyclerSector = (RecyclerView) findViewById(R.id.rcvwSector);
         //Le decimos que layout va a usar para repartir los elementos en el interior del RecyclerView mediante un
         //GridLayoutManager.
-        recyclerSector.setLayoutManager(new GridLayoutManager(this, 2, 1, false));
+        recyclerSector.setLayoutManager(new GridLayoutManager(this, 1, 1, false));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listener = new SectorAdapter.OnItemClickListener() {

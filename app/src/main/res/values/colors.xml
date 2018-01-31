@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ab47bc</color>
-    <color name="colorPrimaryDark">#790e8b</color>
-    <color name="colorAccent">#aa00ff</color>
+    <color name="colorPrimary">#4759bc</color>
+    <color name="colorPrimaryDark">#2c79bc</color>
+    <color name="colorAccent">#ec9b31</color>
     <color name="colorGoogle">#e25c47</color>
     <color name="colorFacebook">#3b5998</color>
     <color name="colorPrimaryLogin">#ffffff</color>
     <color name="colorCheckedChk">#a6a6a6</color>
-    <color name="background_action_mode">#ab47bc</color>
+    <color name="background_action_mode">#47a3bc</color>
 </resources>
