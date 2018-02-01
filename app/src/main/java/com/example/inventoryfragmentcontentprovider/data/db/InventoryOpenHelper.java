@@ -39,7 +39,7 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            db.beginTransaction();
+            //db.beginTransaction();
             //Creamos e insertamos los datos en las tablas.
             db.execSQL(InventoryContract.DependencyEntry.SQL_CREATE_ENTRIES);
             db.execSQL(InventoryContract.DependencyEntry.SQL_INSERT_ENTRIES);
@@ -51,11 +51,11 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
             db.execSQL(InventoryContract.CategoryEntry.SQL_INSERT_ENTRIES);
             db.execSQL(InventoryContract.ProductEntry.SQL_CREATE_ENTRIES);
             db.execSQL(InventoryContract.ProductEntry.SQL_INSERT_ENTRIES);
-            db.setTransactionSuccessful();
+            //db.setTransactionSuccessful();
         } catch (SQLiteException e) {
             e.printStackTrace();
         } finally {
-            db.endTransaction();
+            //db.endTransaction();
         }
     }
 

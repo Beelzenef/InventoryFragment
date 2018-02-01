@@ -2,6 +2,12 @@ package com.example.inventoryfragmentcontentprovider.data.db;
 
 import android.provider.BaseColumns;
 
+import com.example.inventoryfragmentcontentprovider.data.db.model.Dependency;
+import com.example.inventoryfragmentcontentprovider.data.db.model.Product;
+import com.example.inventoryfragmentcontentprovider.data.db.model.Tipo;
+
+import java.util.HashMap;
+
 /**
  * Created by usuario on 19/01/18.
  */
@@ -24,8 +30,8 @@ public class InventoryContract {
         public static final String COLUMN_SHORTNAME = "shortname";
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_IMAGENAME = "imageName";
-        public static final String[] ALL_COLUMNS = new String[] {
-          BaseColumns._ID,COLUMN_NAME,COLUMN_SHORTNAME,COLUMN_DESCRIPTION,COLUMN_IMAGENAME
+        public static final String[] ALL_COLUMNS = new String[]{
+                BaseColumns._ID, COLUMN_NAME, COLUMN_SHORTNAME, COLUMN_DESCRIPTION, COLUMN_IMAGENAME
         };
         public static final String DEFAULT_SORT = COLUMN_NAME;
 
@@ -70,17 +76,17 @@ public class InventoryContract {
         public static final String COLUMN_SHORTNAME = "shortname";
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_IMAGENAME = "imageName";
-        public static final String[] ALL_COLUMNS = new String[] {
-                BaseColumns._ID,COLUMN_DEPENDENCYID,COLUMN_NAME,COLUMN_SHORTNAME,COLUMN_DESCRIPTION,COLUMN_IMAGENAME
+        public static final String[] ALL_COLUMNS = new String[]{
+                BaseColumns._ID, COLUMN_DEPENDENCYID, COLUMN_NAME, COLUMN_SHORTNAME, COLUMN_DESCRIPTION, COLUMN_IMAGENAME
         };
 
         public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "%s INTEGER NOT NULL, " +
-                "%s TEXT NOT NULL, " +
-                "%s TEXT NOT NULL, " +
-                "%s TEXT NOT NULL, " +
-                "%s TEXT NOT NULL, " +
-                "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)",
+                        "%s INTEGER NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)",
                 TABLE_NAME,
                 BaseColumns._ID,
                 COLUMN_DEPENDENCYID,
@@ -94,9 +100,9 @@ public class InventoryContract {
 
         public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s,%s,%s) VALUES (%s,'%s','%s','%s','%s'),(%s,'%s','%s','%s','%s'),(%s,'%s','%s','%s','%s')",
                 TABLE_NAME, COLUMN_DEPENDENCYID, COLUMN_NAME, COLUMN_SHORTNAME, COLUMN_DESCRIPTION, COLUMN_IMAGENAME,
-                "1","ARMARIO1","ARM1","Armario de la entrada a la izquierda","No tengo imagen",
-                "1","ARMARIO2","ARM2","Armario de la entrada a la derecha","No tengo imagen",
-                "2","ARMARIO3","ARM3","Armario de la entrada en el centro","No tengo imagen");
+                "1", "ARMARIO1", "ARM1", "Armario de la entrada a la izquierda", "No tengo imagen",
+                "1", "ARMARIO2", "ARM2", "Armario de la entrada a la derecha", "No tengo imagen",
+                "2", "ARMARIO3", "ARM3", "Armario de la entrada en el centro", "No tengo imagen");
 
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
 
@@ -121,7 +127,7 @@ public class InventoryContract {
         public static final String COLUMN_URL = "url";
         public static final String COLUMN_DATEPURCHASE = "datepurchase";
         public static final String COLUMN_NOTES = "notes";
-        public static final String[] ALL_COLUMNS = new String[] {
+        public static final String[] ALL_COLUMNS = new String[]{
                 BaseColumns._ID, COLUMN_DESCRIPTION, COLUMN_DEPENDENCYID, COLUMN_SECTIONID, COLUMN_CATEGORY, COLUMN_TIPO, COLUMN_SECTIONID
         };
 
@@ -132,7 +138,9 @@ public class InventoryContract {
                         "%s INTEGER NOT NULL, " +
                         "%s INTEGER NOT NULL, " +
                         "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)" +
-                "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)",
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)" +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)" +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON UPDATE CASCADE ON DELETE RESTRICT)",
                 TABLE_NAME,
                 BaseColumns._ID,
                 COLUMN_DESCRIPTION,
@@ -142,10 +150,16 @@ public class InventoryContract {
                 COLUMN_TIPO,
                 COLUMN_SECTIONID,
                 SectorEntry.TABLE_NAME,
-                BaseColumns._ID,
+                SectorEntry._ID,
                 COLUMN_DEPENDENCYID,
                 DependencyEntry.TABLE_NAME,
-                BaseColumns._ID);
+                DependencyEntry._ID,
+                COLUMN_CATEGORY,
+                CategoryEntry.TABLE_NAME,
+                CategoryEntry._ID,
+                COLUMN_TIPO,
+                TipoEntry.TABLE_NAME,
+                TipoEntry._ID);
 
         public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s, %s, %s, %s, %s) VALUES (%s, '%s', '%s', '%s', '%s'), (%s, '%s', '%s', '%s', '%s'), (%s, '%s', '%s', '%s', '%s')",
                 TABLE_NAME,
@@ -168,7 +182,7 @@ public class InventoryContract {
         public static final String COLUMN_NAME = "nombre";
 
         public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "%s TEXT NOT NULL)",
+                        "%s TEXT NOT NULL)",
                 TABLE_NAME,
                 BaseColumns._ID,
                 COLUMN_NAME);
@@ -196,6 +210,46 @@ public class InventoryContract {
                 COLUMN_NAME,
                 "Tipo1", "Tipo2", "Tipo3");
 
+    }
+
+    public static class ProductInnerJoinEntry implements BaseColumns {
+        public static final String TABLE_NAME = "product";
+        public static final String COLUMN_PRODUCTID = "id";
+        public static final String COLUMN_DESCRIPTION = "description";
+        public static final String COLUMN_CATEGORY = "category";
+        public static final String COLUMN_CATEGORYNAME = "categoryname";
+        public static final String COLUMN_SUBCATEGORY = "subcategory";
+        public static final String COLUMN_CLASS = "class";
+        public static final String COLUMN_TIPO = "tipo";
+        public static final String COLUMN_TIPONAME = "tiponame";
+        public static final String COLUMN_SECTIONID = "section";
+        public static final String COLUMN_DEPENDENCYID = "sectionid";
+        public static final String COLUMN_INVENTORYID = "inventoryid";
+        public static final String COLUMN_STATUS = "status";
+        public static final String COLUMN_SERIAL = "serial";
+        public static final String COLUMN_CANTIDAD = "cantidad";
+        public static final String COLUMN_VALUE = "value";
+        public static final String COLUMN_VENDOR = "vendor";
+        public static final String COLUMN_URL = "url";
+        public static final String COLUMN_DATEPURCHASE = "datepurchase";
+        public static final String COLUMN_NOTES = "notes";
+        public static final String[] ALL_COLUMNS = new String[]{
+                BaseColumns._ID, COLUMN_DESCRIPTION, COLUMN_DEPENDENCYID, COLUMN_SECTIONID,
+                COLUMN_CATEGORY, COLUMN_CATEGORYNAME, COLUMN_TIPO, COLUMN_TIPONAME, COLUMN_SECTIONID
+        };
+
+        public static final String PRODUCT_INNER_CATEGORIA = String.format("%s INNER JOIN %s ON %s = %s.%s",
+                ProductEntry.TABLE_NAME, CategoryEntry.TABLE_NAME, COLUMN_CATEGORY, CategoryEntry.TABLE_NAME, CategoryEntry._ID);
+
+        public static final String PRODUCT_INNER_TIPO = String.format("%s INNER JOIN %s ON %s = %s.%s",
+                ProductEntry.TABLE_NAME, TipoEntry.TABLE_NAME, COLUMN_TIPO, TipoEntry.TABLE_NAME, TipoEntry._ID);
+
+        public static HashMap<String, String> sProductInnerProjectionMap;
+
+        static {
+            sProductInnerProjectionMap = new HashMap<>();
+            sProductInnerProjectionMap.put (ProductEntry._ID, ProductEntry.TABLE_NAME + "." + ProductEntry._ID);
+        }
     }
 
 }

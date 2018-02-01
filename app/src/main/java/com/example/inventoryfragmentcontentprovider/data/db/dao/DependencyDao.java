@@ -26,34 +26,27 @@ public class DependencyDao {
 
         final ArrayList<Dependency> arrayList = new ArrayList<>();
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //EL selection y selectionArgs es el WHERE
-                SQLiteDatabase sqLiteDatabase = InventoryOpenHelper.getInstance().openDatabase();
-                Cursor cursor = sqLiteDatabase.query(InventoryContract.DependencyEntry.TABLE_NAME,
-                        InventoryContract.DependencyEntry.ALL_COLUMNS,
-                        null, null, null,null,
-                        InventoryContract.DependencyEntry.DEFAULT_SORT, null);
+        SQLiteDatabase sqLiteDatabase = InventoryOpenHelper.getInstance().openDatabase();
+        Cursor cursor = sqLiteDatabase.query(InventoryContract.DependencyEntry.TABLE_NAME,
+                InventoryContract.DependencyEntry.ALL_COLUMNS,
+                null, null, null, null,
+                InventoryContract.DependencyEntry.DEFAULT_SORT, null);
 
-                if (cursor.moveToFirst()) {
-                    do {
-                        Dependency tmp = new Dependency(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-                        arrayList.add(tmp);
+        if (cursor.moveToFirst()) {
+            do {
+                Dependency tmp = new Dependency(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                arrayList.add(tmp);
                         /*try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }*/
-                    } while (cursor.moveToNext());
-                }
+            } while (cursor.moveToNext());
+        }
 
-                //La base de datos se cierra al final.
-                InventoryOpenHelper.getInstance().closeDatabase();
-            }
-        });
+        //La base de datos se cierra al final.
+        InventoryOpenHelper.getInstance().closeDatabase();
 
-        t.start();
 
         return arrayList;
     }
